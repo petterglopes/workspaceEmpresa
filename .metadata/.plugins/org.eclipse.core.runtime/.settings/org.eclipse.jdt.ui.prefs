@@ -1,9 +1,0 @@
-content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="br.com.empresa.entidades.Empresa"><rhs name\="br.com.empresa.entidades.Empresa"/></lhs><lhs name\="br.com.empresa.entidades.Telefone"><rhs name\="br.com.empresa.entidades.Telefone"/></lhs><lhs name\="br.com.empresa.entidades.Endereco"><rhs name\="br.com.empresa.entidades.Endereco"/></lhs><lhs name\="br.com.empresa.entidades.Funcionario"><rhs name\="br.com.empresa.entidades.Funcionario"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="java.util.Date"/></lhs><lhs name\="java.util.Date"><rhs name\="java.util.Date"/></lhs><lhs name\="java.time.temporal.Temporal"><rhs name\="java.time.LocalDate"/></lhs><lhs name\="java.time.temporal.TemporalAccessor"><rhs name\="java.time.LocalDate"/></lhs><lhs name\="java.time.temporal.TemporalAdjuster"><rhs name\="java.time.LocalDate"/></lhs><lhs name\="java.time.chrono.ChronoLocalDate"><rhs name\="java.time.LocalDate"/></lhs></history>
-content_assist_number_of_computers=15
-eclipse.preferences.version=1
-org.eclipse.jdt.internal.ui.navigator.layout=2
-org.eclipse.jdt.internal.ui.navigator.librariesnode=true
-org.eclipse.jdt.ui.formatterprofiles.version=19
-spelling_locale_initialized=true
-useAnnotationsPrefPage=true
-useQuickDiffPrefPage=true
