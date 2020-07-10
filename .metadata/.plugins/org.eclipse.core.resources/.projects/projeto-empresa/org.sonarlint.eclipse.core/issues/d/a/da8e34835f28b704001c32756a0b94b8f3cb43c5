@@ -1,7 +1,7 @@
 
-R
-java:S5785"Use assertEquals instead.(¢¿È±øÿÿÿÿ8Ššµ².H¶RMAJORZ
-CODE_SMELL
 U
-java:S5785–"Use assertNotEquals instead.(Äê¶úÿÿÿÿ8†»³µ².H·RMAJORZ
+java:S5785–"Use assertNotEquals instead.(Äê¶úÿÿÿÿ8†»³µ².HÇRMAJORZ
+CODE_SMELL
+R
+java:S5785"Use assertEquals instead.(¢¿È±øÿÿÿÿ8Ššµ².HÈRMAJORZ
 CODE_SMELL

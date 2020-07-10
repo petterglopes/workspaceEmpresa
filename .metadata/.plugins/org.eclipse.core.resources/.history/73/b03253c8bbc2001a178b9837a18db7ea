@@ -44,6 +44,7 @@ class TelefoneTest {
 
 	@Test
 	void deve_retornar_operadora_valida() {
+		Telefone telefone = new Telefone("11", "11111111", "abc");
 		assertEquals("abc", telefone.getOperadora());
 	}
 }

@@ -17,8 +17,8 @@
 		<item value="org.eclipse.jgit.ssh.apache:5.8.0.202006091008-r"/>
 		<item value="org.eclipse.jgit.ssh.jsch:5.8.0.202006091008-r"/>
 		<item value="org.eclipse.jgit:5.8.0.202006091008-r"/>
-		<item value="org.eclipse.jst.common.fproj.enablement.jdt:3.12.0.v201906031755"/>
-		<item value="org.eclipse.jst.enterprise_ui.feature:3.16.0.v201910241808"/>
+		<item value="org.eclipse.jst.common.fproj.enablement.jdt:3.13.0.v202005211433"/>
+		<item value="org.eclipse.jst.enterprise_ui.feature:3.18.0.v202003201241"/>
 		<item value="org.eclipse.m2e.feature:1.16.0.20200610-1735"/>
 		<item value="org.eclipse.m2e.logback.feature:1.16.0.20200318-1040"/>
 		<item value="org.eclipse.m2e.wtp.feature:1.4.4.20200220-1005"/>
@@ -28,9 +28,9 @@
 		<item value="org.eclipse.platform:4.16.0.v20200604-0951"/>
 		<item value="org.eclipse.rcp:4.16.0.v20200604-0951"/>
 		<item value="org.eclipse.tm.terminal.connector.ssh.feature:4.6.0.202001311822"/>
-		<item value="org.eclipse.tm.terminal.control.feature:4.6.0.202002152037"/>
+		<item value="org.eclipse.tm.terminal.control.feature:4.6.1.202005200056"/>
 		<item value="org.eclipse.tm.terminal.feature:4.6.0.202001311822"/>
-		<item value="org.eclipse.tm.terminal.view.feature:4.6.0.202002151945"/>
+		<item value="org.eclipse.tm.terminal.view.feature:4.6.1.202005101600"/>
 		<item value="org.eclipse.userstorage:1.2.0.v20191120-1614"/>
 		<item value="org.eclipse.wst.common.fproj:3.7.2.v201903222010"/>
 		<item value="org.eclipse.wst.jsdt.chromium.debug.feature:0.6.100.v201908270117"/>
