@@ -1,0 +1,17 @@
+package br.com.empresa.entidadesTest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import br.com.empresa.entidades.Telefone;
+
+class TelefoneTest {
+
+	@Test
+	void deve_retornar_ddd_valido() {
+		Telefone telefone = new Telefone("11", "11111111", "abc");
+		assertEquals("11", telefone.getDdd());
+	}
+
+}

@@ -1,0 +1,57 @@
+package br.com.empresa.entidadesTest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.engine.discovery.predicates.IsNestedTestClass;
+
+import br.com.empresa.entidades.Empresa;
+import br.com.empresa.entidades.Funcionario;
+
+class EmpresaTest {
+
+	@Test
+	void test_quantidade_de_caracteres_cnpj() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-0");
+		assertEquals(19, empresa.getCnpj().length());
+	}
+
+	@Test
+	void test_get_nome() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-0");
+		assertEquals("EmpresaTeste", empresa.getNome());
+	}
+	
+	@Test
+	void test_get_cnpj() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-00");
+		assertEquals("00.000.000/0000-00", empresa.getCnpj());
+	}
+	
+	@Test
+	void test_get_representantelegal() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-0");
+		empresa.setRepresentanteLegal(new Funcionario("Antonio", "111.111.111-1", 3000L));
+		assertTrue(empresa.getRepresentanteLegal() instanceof Funcionario);
+		assertEquals(new Funcionario("Antonio", "111.111.111-1", 3000L), empresa.getRepresentanteLegal());
+	}
+	
+	@Test
+	void test_get_telefone() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-0");
+		assertEquals("EmpresaTeste", empresa.getNome());
+	}
+	
+	@Test
+	void test_get_endereco() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-0");
+		assertEquals("EmpresaTeste", empresa.getNome());
+	}
+	@Test
+	void test_get_data() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-0");
+		assertEquals("EmpresaTeste", empresa.getNome());
+	}
+
+}

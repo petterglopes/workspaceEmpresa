@@ -1,0 +1,72 @@
+package br.com.empresa.entidadesTest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Date;
+
+import org.junit.jupiter.api.Test;
+
+import br.com.empresa.entidades.Empresa;
+import br.com.empresa.entidades.Endereco;
+import br.com.empresa.entidades.Funcionario;
+import br.com.empresa.entidades.Telefone;
+import sun.util.resources.LocaleData;
+
+class EmpresaTest {
+
+	@Test
+	void test_quantidade_de_caracteres_cnpj() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-0");
+		assertEquals(19, empresa.getCnpj().length());
+	}
+
+	@Test
+	void test_get_nome() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-0");
+		assertEquals("EmpresaTeste", empresa.getNome());
+	}
+	
+	@Test
+	void test_get_cnpj() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-00");
+		assertEquals("00.000.000/0000-00", empresa.getCnpj());
+	}
+	
+	@Test
+	void test_get_representantelegal() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-0");
+		empresa.setRepresentanteLegal(new Funcionario("Antonio", "111.111.111-1", 3000L));
+		assertTrue(empresa.getRepresentanteLegal() instanceof Funcionario);
+		assertEquals("Antonio", empresa.getRepresentanteLegal().getNome());
+		assertEquals("111.111.111-11", empresa.getRepresentanteLegal().getCpf());
+		assertEquals(3000L, empresa.getRepresentanteLegal().getSalario());
+	}
+	
+	@Test
+	void test_get_telefone() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-0");
+		empresa.setTelefone(new Telefone("11", "11111111", "abc"));
+		assertTrue(empresa.getTelefone() instanceof Telefone);
+		assertEquals("11", empresa.getTelefone().getDdd());
+		assertEquals("11111111", empresa.getTelefone().getNumero());
+		assertEquals("abc", empresa.getTelefone().getOperadora());
+	}
+	
+	@Test
+	void test_get_endereco() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-0");
+		empresa.setEndereco(new Endereco(280, "Brasil", "00000-000"));
+		assertTrue(empresa.getEndereco() instanceof Endereco);
+		assertEquals(280, empresa.getEndereco().getNumero());
+		assertEquals("Brasil", empresa.getEndereco().getPais());
+		assertEquals("00000-000", empresa.getEndereco().getCep());
+	}
+	
+	@Test
+	void test_get_data() {
+		Empresa empresa = new Empresa("EmpresaTeste", "00.000.000/0000-0");
+		empresa.setDataAbertura(new LocaleData(2020-01-10));
+	}
+
+}

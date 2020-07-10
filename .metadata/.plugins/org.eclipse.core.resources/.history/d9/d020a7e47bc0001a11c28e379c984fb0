@@ -1,0 +1,18 @@
+package br.com.empresa.entidadesTest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import br.com.empresa.entidades.Telefone;
+
+class TelefoneTest {
+
+	@Test
+	void test_quantidade_de_caracteres_telefone() {
+		Telefone telefone = new Telefone("11", "11111111", "abc");
+		assertEquals(2, telefone.getDdd().length());
+		assertEquals(9, telefone.getNumero().length());
+	}
+
+}
