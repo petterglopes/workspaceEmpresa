@@ -1,7 +1,7 @@
 package br.com.empresa.entitiesTest;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -11,13 +11,17 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.Timeout;
 
 import br.com.empresa.entities.Endereco;
 import br.com.empresa.entities.Funcionario;
 import br.com.empresa.entities.Telefone;
 
+@TestMethodOrder(OrderAnnotation.class)
 class FuncionarioTest {
 	
 	Funcionario funcionario;
@@ -29,7 +33,7 @@ class FuncionarioTest {
 	}
 
 	@BeforeEach
-	@Timeout(value = 500, unit = TimeUnit.MICROSECONDS)
+	@Timeout(value = 1, unit = TimeUnit.SECONDS)
 	void antes_de_cada_teste() {
 		System.out.println("O esse teste foi iniciado");
 		funcionario = new Funcionario("Antonio", "11111111111", 3000L);
@@ -46,17 +50,20 @@ class FuncionarioTest {
 	}
 	
 	@Test
+	@Order(3)
 	void deve_retornar_nome_valido_construtor() {
 		assertThat("falhou",funcionario.getNome(), equalTo("Antonio"));
 	}
 	
 	@Test
+	@Order(2)
 	void deve_retornar_nome_valido() {
 		funcionario.setNome("Joao");
 		assertThat("falhou",funcionario.getNome(), equalTo("Joao"));
 	}
 	
 	@Test
+	@Order(1)
 	void nao_deve_acecitar_nome_vazio_construtor() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 			new Funcionario("",	 "11111111111", 1000L);
