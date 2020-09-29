@@ -3,8 +3,6 @@ package br.com.empresa.entities;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.Email;
@@ -31,6 +29,27 @@ import br.com.caelum.stella.bean.validation.CPF;
  */
 public class Funcionario {
 
+    /** The Constant MAXIMO_CARACTERES_NOME. */
+    private static final int MAXIMO_CARACTERES_NOME = 100;
+
+    /** The Constant MINIMO_CARACTERES_NOME. */
+    private static final int MINIMO_CARACTERES_NOME = 3;
+
+    /** The Constant MINIMO_SALARIO. */
+    private static final int MINIMO_SALARIO = 0;
+
+    /** The Constant MAXIMO_QUANTIDADE_TELEFONE. */
+    private static final int MAXIMO_QUANTIDADE_TELEFONE = 2;
+
+    /** The Constant MINIMO_QUANTIDADE_TELEFONE. */
+    private static final int MINIMO_QUANTIDADE_TELEFONE = 1;
+
+    /** The Constant MAXIMO_QUANTIDADE_ENDERECO. */
+    private static final int MAXIMO_QUANTIDADE_ENDERECO = 2;
+
+    /** The Constant MINIMO_QUANTIDADE_ENDERECO. */
+    private static final int MINIMO_QUANTIDADE_ENDERECO = 1;
+
     /** The id. */
     @EqualsExclude
     @HashCodeExclude
@@ -41,7 +60,7 @@ public class Funcionario {
     @EqualsExclude
     @HashCodeExclude
     @NotBlank(message = "O nome não pode ser vazio nem nulo.")
-    @Length(min = 3, max = 100, message = "Nome não pode ter menos que 3 ou mais que 100 caracteres.")
+    @Length(min = MINIMO_CARACTERES_NOME, max = MAXIMO_CARACTERES_NOME, message = "Nome não pode ter menos que 3 ou mais que 100 caracteres.")
     @Pattern(regexp = "\\D*", message = "Nome não deve conter caractere numérico.")
     private String nome;
 
@@ -54,20 +73,20 @@ public class Funcionario {
     @EqualsExclude
     @HashCodeExclude
     @NotNull(message = "O salario não pode ser nulo.")
-    @Min(value = 0, message = "O salário não pode ser menor que zero.")
+    @Min(value = MINIMO_SALARIO, message = "O salário não pode ser menor que zero.")
     private Long salario;
 
     /** The telefones. */
     @EqualsExclude
     @HashCodeExclude
-    @Size(min = 1, max = 2)
+    @Size(min = MINIMO_QUANTIDADE_TELEFONE, max = MAXIMO_QUANTIDADE_TELEFONE)
     @NotEmpty(message = "A lista de telefones não pode estar vazia.")
     private Set<Telefone> telefones;
 
     /** The enderecos. */
     @EqualsExclude
     @HashCodeExclude
-    @Size(min = 1, max = 2)
+    @Size(min = MINIMO_QUANTIDADE_ENDERECO, max = MAXIMO_QUANTIDADE_ENDERECO)
     @NotNull(message = "A lista de endereços não pode estar vazia.")
     private Set<Endereco> enderecos;
 
@@ -90,16 +109,16 @@ public class Funcionario {
      * @param nome the nome
      * @param cpf the cpf
      * @param salario the salario
-     * @param telefones the telefones
-     * @param enderecos the enderecos
+     * @param telefone the telefone
+     * @param endereco the endereco
      * @param email the email
      */
-    public Funcionario(String nome, String cpf, Long salario, Set<Telefone> telefones, Set<Endereco> enderecos, String email) {
+    public Funcionario(String nome, String cpf, Long salario, Telefone telefone, Endereco endereco, String email) {
         this.nome = nome;
         this.cpf = cpf;
         this.salario = salario;
-        this.telefones = telefones;
-        this.enderecos = enderecos;
+        setTelefones(telefone);
+        setEnderecos(endereco);
         this.email = email;
     }
 
@@ -187,15 +206,15 @@ public class Funcionario {
     /**
      * Sets the telefones.
      *
-     * @param telefones the new telefones
+     * @param telefone the new telefones
      */
-    public void setTelefones(Set<Telefone> telefones) {
-        checkNotNull(telefones, "A lista de telefones não pode estar nula.");
-        checkArgument(telefones.size() <= 2, "Lista não pode conter telefones de mesmo tipo.");
-        List<Telefone> listaAux = new ArrayList<>();
-        telefones.forEach(item -> listaAux.add(item));
-        checkArgument(telefones.size() <= 1 || listaAux.get(0).getTipoTelefone() != listaAux.get(1).getTipoTelefone(), "Lista não pode conter telefones de mesmo tipo.");
-        this.telefones = telefones;
+    public void setTelefones(Telefone telefone) {
+        checkNotNull(telefone, "O telefone não pode ser nulo.");
+        this.telefones.forEach(
+            telefoneAux ->
+                checkArgument(telefoneAux.getTipoTelefone() != telefone.getTipoTelefone(), 
+                "Lista não pode conter telefones de mesmo tipo."));
+        this.telefones.add(telefone);
     }
 
     /**
@@ -210,15 +229,15 @@ public class Funcionario {
     /**
      * Sets the enderecos.
      *
-     * @param enderecos the new enderecos
+     * @param endereco the new enderecos
      */
-    public void setEnderecos(Set<Endereco> enderecos) {
-        checkNotNull(enderecos, "A lista de endereços não pode estar nula.");
-        checkArgument(enderecos.size() <= 2, "Lista não pode conter endereços de mesmo tipo.");
-        List<Endereco> listaAux = new ArrayList<>();
-        enderecos.forEach(item -> listaAux.add(item));
-        checkArgument(enderecos.size() <= 1 || listaAux.get(0).getTipoEndereco() != listaAux.get(1).getTipoEndereco(), "Lista não pode conter endereços de mesmo tipo.");
-        this.enderecos = enderecos;
+    public void setEnderecos(Endereco endereco) {
+        checkNotNull(endereco, "O endereço não pode ser nulo.");
+        this.enderecos.forEach(
+            enderecoAux ->
+                checkArgument(enderecoAux.getTipoEndereco() != endereco.getTipoEndereco(), 
+                "Lista não pode conter endereços de mesmo tipo."));
+        this.enderecos.add(endereco);
     }
 
     /**

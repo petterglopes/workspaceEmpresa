@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -415,9 +414,7 @@ class EmpresaTest {
 
     @Test
     void deve_retornar_telefones_valido() {
-        Set<Telefone> telefones = new HashSet<Telefone>();
-        telefones.add(Fixture.from(Telefone.class).gimme("telefone_valido"));
-        empresa.setTelefones(telefones);
+        empresa.setTelefones(Fixture.from(Telefone.class).gimme("telefone_valido_comercial"));
         restricoes = validator.validate(empresa);
         assertTrue(restricoes.isEmpty());
         for(Telefone telefone : empresa.getTelefones()) {
@@ -427,10 +424,7 @@ class EmpresaTest {
 
     @Test
     void deve_aceitar_telefones_tipo_diferente() {
-        Set<Telefone> telefones = new HashSet<Telefone>();
-        telefones.add(Fixture.from(Telefone.class).gimme("telefone_valido_residencial"));
-        telefones.add(Fixture.from(Telefone.class).gimme("telefone_valido_comercial"));
-        assertDoesNotThrow(() -> empresa.setTelefones(telefones));
+        assertDoesNotThrow(() -> empresa.setTelefones(Fixture.from(Telefone.class).gimme("telefone_valido_comercial")));
         restricoes = validator.validate(empresa);
         assertTrue(restricoes.isEmpty());
         for(Telefone telefone : empresa.getTelefones()) {
@@ -440,10 +434,11 @@ class EmpresaTest {
 
     @Test
     void nao_deve_aceitar_telefones_tipo_iguais() {
-        Set<Telefone> telefones = new HashSet<Telefone>();
-        telefones.add(Fixture.from(Telefone.class).gimme("telefone_valido_comercial"));
-        telefones.add(Fixture.from(Telefone.class).gimme("telefone_valido_comercial"));
-        assertThrows(IllegalArgumentException.class, () -> empresa.setTelefones(telefones));
+        Telefone telefone = Fixture.from(Telefone.class).gimme("telefone_valido_residencial");
+        assertThrows(IllegalArgumentException.class,
+            () -> empresa.setTelefones(telefone));
+        restricoes = validator.validate(empresa);
+        assertTrue(restricoes.isEmpty());
     }
 
     @Test
@@ -460,7 +455,7 @@ class EmpresaTest {
     @Test
     void nao_deve_aceitar_telefones_null() {
         Exception exception = assertThrows(NullPointerException.class, () -> empresa.setTelefones(null));
-        assertEquals("A lista de telefones não pode estar nula.", exception.getMessage());
+        assertEquals("O telefone não pode ser nulo.", exception.getMessage());
     }
 
     @Test
@@ -473,9 +468,7 @@ class EmpresaTest {
 
     @Test
     void deve_retornar_enderecos_validos() {
-        Set<Endereco> enderecos = new HashSet<Endereco>();
-        enderecos.add(Fixture.from(Endereco.class).gimme("endereco_valido"));
-        empresa.setEnderecos(enderecos);
+        empresa.setEnderecos(Fixture.from(Endereco.class).gimme("endereco_valido_comercial"));
         restricoes = validator.validate(empresa);
         assertTrue(restricoes.isEmpty());
         for(Endereco endereco : empresa.getEnderecos())
@@ -484,10 +477,7 @@ class EmpresaTest {
 
     @Test
     void deve_aceitar_enderecos_tipo_diferente() {
-        Set<Endereco> enderecos = new HashSet<Endereco>();
-        enderecos.add(Fixture.from(Endereco.class).gimme("endereco_valido_residencial"));
-        enderecos.add(Fixture.from(Endereco.class).gimme("endereco_valido_comercial"));
-        assertDoesNotThrow(() -> empresa.setEnderecos(enderecos));
+        assertDoesNotThrow(() -> empresa.setEnderecos(Fixture.from(Endereco.class).gimme("endereco_valido_comercial")));
         restricoes = validator.validate(empresa);
         assertTrue(restricoes.isEmpty());
         for(Endereco endereco : empresa.getEnderecos()) {
@@ -497,12 +487,10 @@ class EmpresaTest {
 
     @Test
     void nao_deve_aceitar_enderecos_tipo_iguais() {
-        Set<Endereco> enderecos = new HashSet<Endereco>();
-        Endereco enderecoAux = Fixture.from(Endereco.class).gimme("endereco_valido_comercial");
-        enderecos.add(enderecoAux);
-        enderecoAux.setNumero(2000);
-        enderecos.add(enderecoAux);
-        assertThrows(IllegalArgumentException.class, () -> empresa.setEnderecos(enderecos));
+        Endereco endereco = Fixture.from(Endereco.class).gimme("endereco_valido_residencial");
+        assertThrows(IllegalArgumentException.class, () -> empresa.setEnderecos(endereco));
+        restricoes = validator.validate(empresa);
+        assertTrue(restricoes.isEmpty());
     }
 
     @Test
@@ -519,7 +507,7 @@ class EmpresaTest {
     @Test
     void nao_deve_aceitar_enderecos_null() {
         Exception exception = assertThrows(NullPointerException.class, () -> empresa.setEnderecos(null));
-        assertEquals("A lista de endereços não pode estar nula.", exception.getMessage());
+        assertEquals("O endereço não pode ser nulo.", exception.getMessage());
     }
 
     @Test
