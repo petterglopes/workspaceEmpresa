@@ -23,8 +23,8 @@ public class TemplatesFixtureFactory implements TemplateLoader {
                 add("nome", "Empresa");
                 add("cnpj", cnpj());
                 add("representanteLegal", one(Funcionario.class, "funcionario_valido"));
-                add("enderecos", has(2).of(Endereco.class, "endereco_valido"));
-                add("telefones", has(2).of(Telefone.class, "telefone_valido"));
+                add("enderecos", has(1).of(Endereco.class, "endereco_valido"));
+                add("telefones", has(1).of(Telefone.class, "telefone_valido"));
                 add("dataAbertura", LocalDate.now());
                 add("site", "https://contmatic.com.br/");
             }
@@ -116,8 +116,8 @@ public class TemplatesFixtureFactory implements TemplateLoader {
                 add("nome", "Antonio");
                 add("cpf", "11164291602");
                 add("salario", 3000L);
-                add("enderecos", has(2).of(Endereco.class, "endereco_valido"));
-                add("telefones", has(2).of(Telefone.class, "telefone_valido"));
+                add("enderecos", has(1).of(Endereco.class, "endereco_valido"));
+                add("telefones", has(1).of(Telefone.class, "telefone_valido"));
                 add("email", "asdakjm@asdkjs.com");
             }
         }).addTemplate("funcionario_nome_null").inherits("funcionario_valido", new Rule() {
@@ -197,7 +197,7 @@ public class TemplatesFixtureFactory implements TemplateLoader {
                 add("estado", "SP");
                 add("pais", "Brasil");
                 add("cep", "11111-111");
-                add("tipoEndereco", random(TipoEndereco.COMERCIAL, TipoEndereco.RESIDENCIAL));
+                add("tipoEndereco", TipoEndereco.RESIDENCIAL);
             }
         }).addTemplate("endereco_valido_comercial").inherits("endereco_valido", new Rule() {
             {
@@ -299,7 +299,7 @@ public class TemplatesFixtureFactory implements TemplateLoader {
                 add("ddd", regex("[0-9]{2}"));
                 add("numero", regex("[0-9]{5}[-][0-9]{4}"));
                 add("operadora", random("Vivo", "Tim", "Oi", "Claro"));
-                add("tipoTelefone", random(TipoTelefone.COMERCIAL, TipoTelefone.RESIDENCIAL));
+                add("tipoTelefone", TipoTelefone.RESIDENCIAL);
             }
         }).addTemplate("telefone_valido_comercial").inherits("telefone_valido", new Rule() {
             {

@@ -17,6 +17,12 @@ import org.hibernate.validator.constraints.Range;
  */
 public class Endereco {
 
+    /** The Constant MAIOR_NUM_ENDERECO. */
+    private static final int MAIOR_NUM_ENDERECO = 60000;
+
+    /** The Constant MENOR_NUM_ENDERECO. */
+    private static final int MENOR_NUM_ENDERECO = 0;
+
     /** The id. */
     @EqualsExclude
     @HashCodeExclude
@@ -37,8 +43,9 @@ public class Endereco {
     @Pattern(regexp = "[a-zA-Z_0-9 ]{1,}", message = "Permitido apenas letras e numeros para endereço logradouro.")
     private String enderecoLogradouro;
 
+    /** The numero. */
     @NotNull(message = "O número não pode ser nulo.")
-    @Range(min = 0, max = 99999, message = "O número não pode ser negativo.")
+    @Range(min = MENOR_NUM_ENDERECO, max = MAIOR_NUM_ENDERECO, message = "O número não pode ser negativo.")
     private Integer numero;
 
     /** The bairro. */
@@ -156,7 +163,7 @@ public class Endereco {
     /**
      * Sets the endereco.
      *
-     * @param endereco the new endereco
+     * @param enderecoLogradouro the new endereco logradouro
      */
     public void setEnderecoLogradouro(String enderecoLogradouro) {
         this.enderecoLogradouro = enderecoLogradouro;

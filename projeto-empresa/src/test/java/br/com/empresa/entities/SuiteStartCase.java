@@ -6,4 +6,4 @@ import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
 @SelectClasses({EmpresaTest.class, EnderecoTest.class, FuncionarioTest.class, TelefoneTest.class})
-class SuiteTest { }
+public class SuiteStartCase { }
